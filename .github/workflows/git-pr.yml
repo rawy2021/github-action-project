@@ -1,0 +1,25 @@
+on:
+  push:
+    branches:
+      - main
+      - 'release/**'
+    paths:
+      - 'src/**'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps: 
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20' # حدد الإصدار الذي تعمل عليه
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run test
+        run: npm test
